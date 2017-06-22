@@ -151,6 +151,64 @@ public class Game {
     public String checkGameWinner(char [][]grid){
         String result = "None";
         //Student code goes here ...
+        for (int i = 0; i < 3; i++) {
+            int x = 0, o = 0;
+            for (int j = 0; j < 3; j++) {
+                if (grid[i][j] == 'x') {
+                    x++;
+                }
+                if (grid[i][j] == 'o') {
+                    o++;
+                }
+            }
+            if (x == 3) result = "X wins";
+            if (o == 3) result = "O wins";
+        }
+        for (int i = 0; i < 3; i++) {
+            int x = 0, o = 0;
+            for (int j = 0; j < 3; j++) {
+                if (grid[j][i] == 'x') {
+                    x++;
+                }
+                if (grid[j][i] == 'o') {
+                    o++;
+                }
+            }
+            if (x == 3) result = "X wins";
+            if (o == 3) result = "O wins";
+        }
+
+        if (grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2]
+                && grid[0][0] != '-'
+                && grid[1][1] != '-'
+                && grid[2][2] != '-') {
+            if (grid[0][0] == 'x') {
+                result = "X wins";
+            } else {
+                result = "O wins";
+            }
+        }
+
+        if (grid[0][2] == grid[1][1] && grid [1][1] == grid[2][0]
+                && grid[0][2] != '-'
+                && grid[1][1] != '-'
+                && grid[2][0] != '-') {
+            if (grid[0][2] == 'x') {
+                result = "X wins";
+            } else {
+                result = "O wins";
+            }
+        }
+        int filled = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (grid[j][i] != '-') {
+                    filled++;
+                }
+            }
+        }
+        if (filled == 9) result = "Tie";
+
         return result;
     }
 
